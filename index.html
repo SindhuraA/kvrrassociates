@@ -1,0 +1,1639 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>ABC Associates | Premier Legal Counsel</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<style>
+  :root {
+    --gold: #c9a84c;
+    --gold-light: #e8d090;
+    --dark: #0c0c0e;
+    --dark2: #141416;
+    --dark3: #1c1c20;
+    --dark4: #252528;
+    --text: #e8e4dc;
+    --text-muted: #9a9490;
+    --white: #f5f2ec;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Montserrat', sans-serif;
+    background: var(--dark);
+    color: var(--text);
+    overflow-x: hidden;
+  }
+
+  /* ── NOISE OVERLAY ── */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 9999;
+    opacity: 0.4;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.4rem 5%;
+    background: rgba(12,12,14,0.85);
+    backdrop-filter: blur(18px);
+    border-bottom: 1px solid rgba(201,168,76,0.15);
+    transition: padding .3s;
+  }
+
+  .nav-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.6rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    color: var(--white);
+    text-decoration: none;
+  }
+
+  .nav-logo span { color: var(--gold); }
+
+  .nav-links { display: flex; gap: 2.2rem; list-style: none; }
+
+  .nav-links a {
+    font-size: 0.72rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    text-decoration: none;
+    transition: color .25s;
+    position: relative;
+  }
+
+  .nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: -4px; left: 0;
+    width: 0; height: 1px;
+    background: var(--gold);
+    transition: width .3s;
+  }
+
+  .nav-links a:hover { color: var(--gold); }
+  .nav-links a:hover::after { width: 100%; }
+
+  .nav-cta {
+    font-size: 0.7rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    padding: 0.65rem 1.6rem;
+    background: var(--gold);
+    color: var(--dark);
+    text-decoration: none;
+    font-weight: 600;
+    transition: background .25s, transform .2s;
+  }
+
+  .nav-cta:hover { background: var(--gold-light); transform: translateY(-1px); }
+
+  /* ── HERO ── */
+  #home {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-left {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 10rem 5% 6rem 5%;
+    position: relative;
+    z-index: 2;
+  }
+
+  .hero-tag {
+    font-size: 0.68rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1.6rem;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+  }
+
+  .hero-tag::before {
+    content: '';
+    width: 2.5rem;
+    height: 1px;
+    background: var(--gold);
+  }
+
+  .hero-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(3rem, 5vw, 5.5rem);
+    font-weight: 300;
+    line-height: 1.08;
+    letter-spacing: -0.01em;
+    color: var(--white);
+    margin-bottom: 1.8rem;
+  }
+
+  .hero-title em {
+    font-style: italic;
+    color: var(--gold);
+  }
+
+  .hero-sub {
+    font-size: 0.88rem;
+    line-height: 1.9;
+    color: var(--text-muted);
+    max-width: 420px;
+    margin-bottom: 2.8rem;
+    letter-spacing: 0.02em;
+  }
+
+  .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; }
+
+  .btn-primary {
+    padding: 0.85rem 2.2rem;
+    background: var(--gold);
+    color: var(--dark);
+    font-size: 0.72rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all .25s;
+    border: 1px solid var(--gold);
+  }
+
+  .btn-primary:hover { background: transparent; color: var(--gold); }
+
+  .btn-outline {
+    padding: 0.85rem 2.2rem;
+    background: transparent;
+    color: var(--text);
+    font-size: 0.72rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    font-weight: 600;
+    text-decoration: none;
+    border: 1px solid rgba(255,255,255,0.2);
+    transition: all .25s;
+  }
+
+  .btn-outline:hover { border-color: var(--gold); color: var(--gold); }
+
+  .hero-stats {
+    display: flex;
+    gap: 2.5rem;
+    margin-top: 3.5rem;
+    padding-top: 2.5rem;
+    border-top: 1px solid rgba(255,255,255,0.08);
+  }
+
+  .stat-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.4rem;
+    font-weight: 500;
+    color: var(--gold);
+    line-height: 1;
+  }
+
+  .stat-label {
+    font-size: 0.65rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-top: 0.3rem;
+  }
+
+  .hero-right {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-img-wrapper {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, #1a1710 0%, #0c0c0e 60%);
+  }
+
+  .hero-img-wrapper::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: 
+      radial-gradient(ellipse at 60% 40%, rgba(201,168,76,0.12) 0%, transparent 60%),
+      radial-gradient(ellipse at 30% 80%, rgba(201,168,76,0.06) 0%, transparent 50%);
+  }
+
+  .scales-svg {
+    position: absolute;
+    bottom: 8%;
+    right: 8%;
+    width: 55%;
+    opacity: 0.08;
+  }
+
+  .hero-badge {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 240px;
+    height: 240px;
+    border: 1px solid rgba(201,168,76,0.25);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .hero-badge::before {
+    content: '';
+    position: absolute;
+    inset: 16px;
+    border: 1px solid rgba(201,168,76,0.12);
+    border-radius: 50%;
+  }
+
+  .hero-badge-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.3rem;
+    font-weight: 300;
+    color: var(--gold-light);
+    letter-spacing: 0.05em;
+  }
+
+  .hero-badge-sub {
+    font-size: 0.58rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-top: 0.4rem;
+  }
+
+  .hero-vertical-text {
+    position: absolute;
+    top: 50%;
+    right: -2rem;
+    transform: translateY(-50%) rotate(90deg);
+    font-size: 0.58rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: rgba(201,168,76,0.3);
+    white-space: nowrap;
+  }
+
+  /* ── SECTION BASE ── */
+  section { padding: 6rem 5%; }
+
+  .section-tag {
+    font-size: 0.65rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+  }
+
+  .section-tag::before {
+    content: '';
+    width: 2rem;
+    height: 1px;
+    background: var(--gold);
+  }
+
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.2rem, 4vw, 3.4rem);
+    font-weight: 300;
+    line-height: 1.15;
+    color: var(--white);
+    margin-bottom: 1.2rem;
+  }
+
+  .section-title em { font-style: italic; color: var(--gold); }
+
+  .section-lead {
+    font-size: 0.88rem;
+    line-height: 1.9;
+    color: var(--text-muted);
+    max-width: 560px;
+    letter-spacing: 0.02em;
+  }
+
+  /* ── ABOUT ── */
+  #about {
+    background: var(--dark2);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: center;
+  }
+
+  .about-portrait {
+    position: relative;
+  }
+
+  .portrait-frame {
+    width: 100%;
+    aspect-ratio: 3/4;
+    background: var(--dark3);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .portrait-frame::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(12,12,14,0.8) 0%, transparent 50%);
+  }
+
+  .portrait-placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 1rem;
+    background: radial-gradient(ellipse at center, #252528 0%, #141416 100%);
+  }
+
+  .portrait-icon {
+    width: 80px;
+    height: 80px;
+    border: 1px solid rgba(201,168,76,0.3);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+  }
+
+  .portrait-name-overlay {
+    position: absolute;
+    bottom: 1.5rem;
+    left: 1.5rem;
+    z-index: 2;
+  }
+
+  .portrait-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.8rem;
+    font-weight: 400;
+    color: var(--white);
+  }
+
+  .portrait-role {
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-top: 0.2rem;
+  }
+
+  .portrait-corner {
+    position: absolute;
+    top: -1rem;
+    right: -1rem;
+    width: 100px;
+    height: 100px;
+    border-top: 1px solid var(--gold);
+    border-right: 1px solid var(--gold);
+  }
+
+  .portrait-corner-br {
+    position: absolute;
+    bottom: -1rem;
+    left: -1rem;
+    width: 100px;
+    height: 100px;
+    border-bottom: 1px solid var(--gold);
+    border-left: 1px solid var(--gold);
+  }
+
+  .about-content { }
+
+  .about-bio {
+    font-size: 0.88rem;
+    line-height: 2;
+    color: var(--text-muted);
+    margin-bottom: 1.5rem;
+    letter-spacing: 0.02em;
+  }
+
+  .credentials {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-top: 2rem;
+  }
+
+  .credential-item {
+    padding: 1.2rem;
+    border: 1px solid rgba(201,168,76,0.15);
+    background: rgba(201,168,76,0.03);
+    transition: border-color .25s;
+  }
+
+  .credential-item:hover { border-color: rgba(201,168,76,0.4); }
+
+  .credential-year {
+    font-size: 0.62rem;
+    letter-spacing: 0.15em;
+    color: var(--gold);
+    margin-bottom: 0.3rem;
+  }
+
+  .credential-title {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--white);
+    margin-bottom: 0.2rem;
+  }
+
+  .credential-inst {
+    font-size: 0.72rem;
+    color: var(--text-muted);
+  }
+
+  /* ── SPECIALIZATIONS ── */
+  #specializations {
+    background: var(--dark);
+  }
+
+  .spec-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5px;
+    margin-top: 4rem;
+    background: rgba(201,168,76,0.1);
+  }
+
+  .spec-card {
+    background: var(--dark2);
+    padding: 2.5rem 2rem;
+    position: relative;
+    overflow: hidden;
+    transition: background .3s;
+    cursor: default;
+  }
+
+  .spec-card::before {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0;
+    width: 100%;
+    height: 2px;
+    background: var(--gold);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform .4s ease;
+  }
+
+  .spec-card:hover { background: var(--dark3); }
+  .spec-card:hover::before { transform: scaleX(1); }
+
+  .spec-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 3.5rem;
+    font-weight: 300;
+    color: rgba(201,168,76,0.1);
+    position: absolute;
+    top: 1rem;
+    right: 1.5rem;
+    line-height: 1;
+    transition: color .3s;
+  }
+
+  .spec-card:hover .spec-num { color: rgba(201,168,76,0.2); }
+
+  .spec-icon {
+    font-size: 1.8rem;
+    margin-bottom: 1.2rem;
+  }
+
+  .spec-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.4rem;
+    font-weight: 400;
+    color: var(--white);
+    margin-bottom: 0.8rem;
+  }
+
+  .spec-desc {
+    font-size: 0.78rem;
+    line-height: 1.8;
+    color: var(--text-muted);
+  }
+
+  .spec-tag-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin-top: 1.2rem;
+  }
+
+  .spec-tag {
+    font-size: 0.6rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 0.25rem 0.7rem;
+    border: 1px solid rgba(201,168,76,0.2);
+    color: var(--gold);
+  }
+
+  /* ── JUDGEMENTS ── */
+  #judgements {
+    background: var(--dark2);
+  }
+
+  .judgements-intro {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: start;
+    margin-bottom: 4rem;
+  }
+
+  .judgements-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .judgement-card {
+    padding: 2rem;
+    border-left: 2px solid rgba(201,168,76,0.2);
+    background: rgba(201,168,76,0.02);
+    position: relative;
+    transition: border-color .3s, background .3s;
+    cursor: pointer;
+  }
+
+  .judgement-card:hover {
+    border-color: var(--gold);
+    background: rgba(201,168,76,0.05);
+  }
+
+  .judgement-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 0.8rem;
+  }
+
+  .judgement-court {
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    padding: 0.2rem 0.6rem;
+    border: 1px solid rgba(201,168,76,0.3);
+  }
+
+  .judgement-year {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem;
+    color: var(--text-muted);
+  }
+
+  .judgement-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.3rem;
+    font-weight: 400;
+    color: var(--white);
+    margin-bottom: 0.5rem;
+    line-height: 1.3;
+  }
+
+  .judgement-desc {
+    font-size: 0.78rem;
+    line-height: 1.8;
+    color: var(--text-muted);
+  }
+
+  .judgement-outcome {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.65rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #6dbf7f;
+    margin-top: 0.8rem;
+  }
+
+  .judgement-outcome::before {
+    content: '';
+    width: 6px;
+    height: 6px;
+    background: #6dbf7f;
+    border-radius: 50%;
+  }
+
+  /* ── TESTIMONIALS ── */
+  #testimonials {
+    background: var(--dark);
+    overflow: hidden;
+  }
+
+  .testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin-top: 4rem;
+  }
+
+  .testimonial-card {
+    padding: 2.5rem;
+    border: 1px solid rgba(201,168,76,0.12);
+    background: var(--dark2);
+    position: relative;
+    transition: border-color .3s;
+  }
+
+  .testimonial-card:hover { border-color: rgba(201,168,76,0.35); }
+
+  .testimonial-quote {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 4rem;
+    color: var(--gold);
+    opacity: 0.3;
+    line-height: 0.8;
+    margin-bottom: 1rem;
+  }
+
+  .testimonial-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem;
+    font-style: italic;
+    line-height: 1.7;
+    color: var(--text);
+    margin-bottom: 1.5rem;
+  }
+
+  .testimonial-author {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding-top: 1.2rem;
+    border-top: 1px solid rgba(255,255,255,0.07);
+  }
+
+  .author-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: var(--dark4);
+    border: 1px solid rgba(201,168,76,0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    flex-shrink: 0;
+  }
+
+  .author-name {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--white);
+  }
+
+  .author-role {
+    font-size: 0.65rem;
+    color: var(--text-muted);
+    margin-top: 0.15rem;
+  }
+
+  .stars {
+    color: var(--gold);
+    font-size: 0.7rem;
+    margin-top: 0.3rem;
+    letter-spacing: 0.1em;
+  }
+
+  /* ── CONTACT ── */
+  #contact {
+    background: var(--dark2);
+  }
+
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.4fr;
+    gap: 5rem;
+    margin-top: 4rem;
+    align-items: start;
+  }
+
+  .contact-info { }
+
+  .contact-item {
+    display: flex;
+    gap: 1.2rem;
+    align-items: flex-start;
+    padding: 1.5rem 0;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+
+  .contact-icon {
+    width: 40px;
+    height: 40px;
+    border: 1px solid rgba(201,168,76,0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    flex-shrink: 0;
+    color: var(--gold);
+  }
+
+  .contact-label {
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.3rem;
+  }
+
+  .contact-value {
+    font-size: 0.88rem;
+    color: var(--white);
+    line-height: 1.6;
+  }
+
+  .social-links {
+    display: flex;
+    gap: 0.8rem;
+    margin-top: 2rem;
+  }
+
+  .social-link {
+    width: 40px;
+    height: 40px;
+    border: 1px solid rgba(201,168,76,0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: all .25s;
+  }
+
+  .social-link:hover {
+    border-color: var(--gold);
+    color: var(--gold);
+    background: rgba(201,168,76,0.05);
+  }
+
+  /* FORM */
+  .contact-form { }
+
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .form-group { margin-bottom: 1rem; }
+
+  .form-group label {
+    display: block;
+    font-size: 0.62rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 0.5rem;
+  }
+
+  .form-group input,
+  .form-group textarea,
+  .form-group select {
+    width: 100%;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.1);
+    padding: 0.9rem 1.1rem;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.82rem;
+    color: var(--text);
+    outline: none;
+    transition: border-color .25s;
+    appearance: none;
+  }
+
+  .form-group input:focus,
+  .form-group textarea:focus,
+  .form-group select:focus {
+    border-color: var(--gold);
+    background: rgba(201,168,76,0.03);
+  }
+
+  .form-group select option { background: var(--dark3); }
+
+  .form-group textarea { resize: vertical; min-height: 120px; }
+
+  .form-submit {
+    width: 100%;
+    padding: 1rem;
+    background: var(--gold);
+    color: var(--dark);
+    border: none;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.72rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all .25s;
+  }
+
+  .form-submit:hover { background: var(--gold-light); }
+
+  /* ── FAQ ── */
+  #faq {
+    background: var(--dark);
+  }
+
+  .faq-list {
+    max-width: 780px;
+    margin: 4rem auto 0;
+  }
+
+  .faq-item {
+    border-bottom: 1px solid rgba(255,255,255,0.07);
+  }
+
+  .faq-question {
+    width: 100%;
+    background: none;
+    border: none;
+    text-align: left;
+    padding: 1.5rem 0;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.15rem;
+    font-weight: 400;
+    color: var(--white);
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: color .25s;
+  }
+
+  .faq-question:hover { color: var(--gold); }
+
+  .faq-toggle {
+    font-size: 1.2rem;
+    color: var(--gold);
+    transition: transform .3s;
+    font-family: 'Montserrat', sans-serif;
+  }
+
+  .faq-answer {
+    font-size: 0.85rem;
+    line-height: 1.9;
+    color: var(--text-muted);
+    padding-bottom: 1.5rem;
+    display: none;
+  }
+
+  .faq-item.open .faq-toggle { transform: rotate(45deg); }
+  .faq-item.open .faq-answer { display: block; }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--dark);
+    border-top: 1px solid rgba(201,168,76,0.15);
+    padding: 3rem 5%;
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    gap: 2rem;
+  }
+
+  .footer-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.4rem;
+    color: var(--white);
+  }
+
+  .footer-logo span { color: var(--gold); }
+
+  .footer-tagline {
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    color: var(--text-muted);
+    margin-top: 0.3rem;
+  }
+
+  .footer-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+    justify-content: center;
+  }
+
+  .footer-links a {
+    font-size: 0.62rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    text-decoration: none;
+    transition: color .25s;
+  }
+
+  .footer-links a:hover { color: var(--gold); }
+
+  .footer-copy {
+    font-size: 0.65rem;
+    color: var(--text-muted);
+    text-align: right;
+    letter-spacing: 0.05em;
+  }
+
+  /* ── DIVIDER ── */
+  .gold-divider {
+    width: 3rem;
+    height: 1px;
+    background: var(--gold);
+    margin: 2rem 0;
+  }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes spinSlow {
+    from { transform: rotate(0deg); }
+    to   { transform: rotate(360deg); }
+  }
+
+  .hero-left > * {
+    animation: fadeInUp 0.7s ease forwards;
+    opacity: 0;
+  }
+
+  .hero-tag    { animation-delay: 0.1s; }
+  .hero-title  { animation-delay: 0.2s; }
+  .hero-sub    { animation-delay: 0.35s; }
+  .hero-btns   { animation-delay: 0.5s; }
+  .hero-stats  { animation-delay: 0.65s; }
+
+  .rotate-ring {
+    animation: spinSlow 20s linear infinite;
+    transform-origin: center;
+  }
+
+  /* ── RESPONSIVE (basic) ── */
+  @media (max-width: 900px) {
+    #home, #about, .judgements-intro, .contact-grid {
+      grid-template-columns: 1fr;
+    }
+    .hero-right { min-height: 350px; }
+    .spec-grid, .testimonials-grid { grid-template-columns: 1fr 1fr; }
+    .credentials { grid-template-columns: 1fr; }
+    footer { grid-template-columns: 1fr; text-align: center; }
+    .footer-copy { text-align: center; }
+    nav { padding: 1rem 4%; }
+  }
+
+  @media (max-width: 600px) {
+    .spec-grid, .testimonials-grid { grid-template-columns: 1fr; }
+    .form-row { grid-template-columns: 1fr; }
+    .nav-links { display: none; }
+  }
+
+  /* ── SCROLL REVEAL ── */
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: none;
+  }
+</style>
+</head>
+<body>
+
+<!-- ══ NAV ══ -->
+<nav>
+  <a href="#home" class="nav-logo">ABC <span>Associates</span></a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#specializations">Practice Areas</a></li>
+    <li><a href="#judgements">Judgements</a></li>
+    <li><a href="#testimonials">Testimonials</a></li>
+    <li><a href="#faq">FAQ</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="#contact" class="nav-cta">Book Consultation</a>
+</nav>
+
+<!-- ══ HERO ══ -->
+<section id="home">
+  <div class="hero-left">
+    <div class="hero-tag">Established 2005 · New Delhi</div>
+    <h1 class="hero-title">
+      Justice Through<br><em>Diligence</em><br>& Expertise
+    </h1>
+    <p class="hero-sub">
+      ABC Associates is a premier full-service law firm offering expert legal counsel across corporate, criminal, constitutional, and civil domains — where every client's cause is championed with precision and integrity.
+    </p>
+    <div class="hero-btns">
+      <a href="#contact" class="btn-primary">Book Free Consultation</a>
+      <a href="#specializations" class="btn-outline">Our Practice Areas</a>
+    </div>
+    <div class="hero-stats">
+      <div>
+        <div class="stat-num">20+</div>
+        <div class="stat-label">Years of Practice</div>
+      </div>
+      <div>
+        <div class="stat-num">850+</div>
+        <div class="stat-label">Cases Won</div>
+      </div>
+      <div>
+        <div class="stat-num">15+</div>
+        <div class="stat-label">Practice Areas</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-right">
+    <div class="hero-img-wrapper">
+      <!-- Decorative SVG scales of justice -->
+      <svg class="scales-svg" viewBox="0 0 200 240" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <line x1="100" y1="10" x2="100" y2="210" stroke="currentColor" stroke-width="1.5"/>
+        <line x1="30" y1="55" x2="170" y2="55" stroke="currentColor" stroke-width="1.5"/>
+        <line x1="30" y1="55" x2="30" y2="110" stroke="currentColor" stroke-width="1"/>
+        <line x1="170" y1="55" x2="170" y2="110" stroke="currentColor" stroke-width="1"/>
+        <ellipse cx="30" cy="118" rx="28" ry="10" stroke="currentColor" stroke-width="1"/>
+        <ellipse cx="170" cy="118" rx="28" ry="10" stroke="currentColor" stroke-width="1"/>
+        <rect x="88" y="208" width="24" height="24" rx="2" stroke="currentColor" stroke-width="1.5"/>
+        <line x1="60" y1="232" x2="140" y2="232" stroke="currentColor" stroke-width="2"/>
+        <circle cx="100" cy="10" r="4" fill="currentColor"/>
+        <style>
+          .scales-svg { color: #c9a84c; }
+        </style>
+      </svg>
+
+      <div class="hero-badge">
+        <svg width="60" height="60" viewBox="0 0 60 60" fill="none">
+          <circle cx="30" cy="30" r="28" stroke="#c9a84c" stroke-width="0.5" stroke-dasharray="3 3" class="rotate-ring"/>
+          <text x="30" y="28" text-anchor="middle" font-family="Cormorant Garamond" font-size="10" fill="#c9a84c" dy="0">ABC</text>
+          <text x="30" y="40" text-anchor="middle" font-family="Cormorant Garamond" font-size="7" fill="#9a9490">ADVOCATES</text>
+        </svg>
+        <div class="hero-badge-text" style="margin-top:0.8rem;">Trusted by<br>1200+ Clients</div>
+        <div class="hero-badge-sub">Since 2005</div>
+      </div>
+
+      <div class="hero-vertical-text">ABC Associates · Premier Legal Counsel · New Delhi</div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ ABOUT ══ -->
+<section id="about">
+  <div class="about-portrait reveal">
+    <div class="portrait-frame">
+      <div class="portrait-placeholder">
+        <div class="portrait-icon">⚖️</div>
+        <div style="font-family:'Cormorant Garamond',serif;font-size:1.1rem;color:var(--text-muted);letter-spacing:0.05em;">Your Photo Here</div>
+      </div>
+      <div class="portrait-name-overlay">
+        <div class="portrait-name">Adv. A.B. Choudhary</div>
+        <div class="portrait-role">Founding Partner · ABC Associates</div>
+      </div>
+    </div>
+    <div class="portrait-corner"></div>
+    <div class="portrait-corner-br"></div>
+  </div>
+
+  <div class="about-content reveal">
+    <div class="section-tag">About The Firm</div>
+    <h2 class="section-title">Two Decades of<br><em>Legal Excellence</em></h2>
+    <div class="gold-divider"></div>
+
+    <p class="about-bio">
+      ABC Associates was founded in 2005 with a singular vision — to provide ethically grounded, results-driven legal representation to individuals, corporations, and institutions across India. Led by Advocate A.B. Choudhary, a distinguished alumnus of the National Law School of India University, the firm has grown into a powerhouse of legal expertise across 15+ specialised practice areas.
+    </p>
+    <p class="about-bio">
+      With appearances before the Supreme Court of India, various High Courts, the National Company Law Tribunal, and other specialized tribunals, ABC Associates combines rigorous academic pedigree with decades of courtroom experience. We believe that every client deserves comprehensive counsel, diligent preparation, and unwavering advocacy.
+    </p>
+
+    <div class="credentials">
+      <div class="credential-item">
+        <div class="credential-year">2001</div>
+        <div class="credential-title">LLB (Hons.)</div>
+        <div class="credential-inst">National Law School of India University, Bengaluru</div>
+      </div>
+      <div class="credential-item">
+        <div class="credential-year">2003</div>
+        <div class="credential-title">LLM · Constitutional Law</div>
+        <div class="credential-inst">University of Delhi, Faculty of Law</div>
+      </div>
+      <div class="credential-item">
+        <div class="credential-year">2005</div>
+        <div class="credential-title">Enrolled — Bar Council</div>
+        <div class="credential-inst">Bar Council of Delhi</div>
+      </div>
+      <div class="credential-item">
+        <div class="credential-year">2018</div>
+        <div class="credential-title">Senior Advocate Designation</div>
+        <div class="credential-inst">High Court of Delhi</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ SPECIALIZATIONS ══ -->
+<section id="specializations">
+  <div style="text-align:center;" class="reveal">
+    <div class="section-tag" style="justify-content:center;">Practice Areas</div>
+    <h2 class="section-title">Our Areas of <em>Specialisation</em></h2>
+    <p class="section-lead" style="margin:0 auto;">We offer comprehensive legal services across a wide spectrum of law — each practice backed by deep expertise, precedent, and a track record of favourable outcomes.</p>
+  </div>
+
+  <div class="spec-grid reveal">
+    <div class="spec-card">
+      <div class="spec-num">01</div>
+      <div class="spec-icon">🏛️</div>
+      <div class="spec-name">Constitutional Law</div>
+      <p class="spec-desc">Representing clients in matters of fundamental rights, writ petitions, judicial review, and PIL litigation before the Supreme Court and High Courts.</p>
+      <div class="spec-tag-list">
+        <span class="spec-tag">Writ Petitions</span>
+        <span class="spec-tag">PIL</span>
+        <span class="spec-tag">Fundamental Rights</span>
+      </div>
+    </div>
+
+    <div class="spec-card">
+      <div class="spec-num">02</div>
+      <div class="spec-icon">💼</div>
+      <div class="spec-name">Corporate & Commercial Law</div>
+      <p class="spec-desc">End-to-end legal support for M&A transactions, shareholder disputes, commercial contracts, regulatory compliance, and NCLT proceedings.</p>
+      <div class="spec-tag-list">
+        <span class="spec-tag">M&A</span>
+        <span class="spec-tag">NCLT</span>
+        <span class="spec-tag">Compliance</span>
+      </div>
+    </div>
+
+    <div class="spec-card">
+      <div class="spec-num">03</div>
+      <div class="spec-icon">⚖️</div>
+      <div class="spec-name">Criminal Law</div>
+      <p class="spec-desc">Skilled criminal defence and prosecution across FIR, bail, anticipatory bail, trial, and appellate proceedings, including white-collar crime and cybercrime cases.</p>
+      <div class="spec-tag-list">
+        <span class="spec-tag">Bail & Anticipatory Bail</span>
+        <span class="spec-tag">White Collar</span>
+        <span class="spec-tag">Appeals</span>
+      </div>
+    </div>
+
+    <div class="spec-card">
+      <div class="spec-num">04</div>
+      <div class="spec-icon">🏠</div>
+      <div class="spec-name">Family & Matrimonial Law</div>
+      <p class="spec-desc">Divorce, child custody, alimony, adoption, domestic violence, and matrimonial property matters handled with sensitivity and strategic insight.</p>
+      <div class="spec-tag-list">
+        <span class="spec-tag">Divorce</span>
+        <span class="spec-tag">Child Custody</span>
+        <span class="spec-tag">DV Act</span>
+      </div>
+    </div>
+
+    <div class="spec-card">
+      <div class="spec-num">05</div>
+      <div class="spec-icon">🏗️</div>
+      <div class="spec-name">Property & Real Estate Law</div>
+      <p class="spec-desc">Title disputes, possession matters, landlord-tenant disputes, RERA compliance, documentation, and registration matters handled end to end.</p>
+      <div class="spec-tag-list">
+        <span class="spec-tag">Title Disputes</span>
+        <span class="spec-tag">RERA</span>
+        <span class="spec-tag">Landlord-Tenant</span>
+      </div>
+    </div>
+
+    <div class="spec-card">
+      <div class="spec-num">06</div>
+      <div class="spec-icon">💻</div>
+      <div class="spec-name">Cyber Law & IT</div>
+      <p class="spec-desc">Data privacy, cybercrime defence, IT Act compliance, online fraud, and digital evidence management for individuals and enterprises.</p>
+      <div class="spec-tag-list">
+        <span class="spec-tag">IT Act</span>
+        <span class="spec-tag">Data Privacy</span>
+        <span class="spec-tag">Cybercrime</span>
+      </div>
+    </div>
+
+    <div class="spec-card">
+      <div class="spec-num">07</div>
+      <div class="spec-icon">🔄</div>
+      <div class="spec-name">Arbitration & Mediation</div>
+      <p class="spec-desc">Expert ADR services for domestic and international commercial disputes — Arbitration Act, ICC, SIAC, and DIAC arbitrations handled with precision.</p>
+      <div class="spec-tag-list">
+        <span class="spec-tag">Domestic Arbitration</span>
+        <span class="spec-tag">ICC/SIAC</span>
+        <span class="spec-tag">Mediation</span>
+      </div>
+    </div>
+
+    <div class="spec-card">
+      <div class="spec-num">08</div>
+      <div class="spec-icon">💡</div>
+      <div class="spec-name">Intellectual Property Law</div>
+      <p class="spec-desc">Trademark, copyright, patent, and trade secret protection with enforcement strategies and litigation before the IP High Court and commercial courts.</p>
+      <div class="spec-tag-list">
+        <span class="spec-tag">Trademark</span>
+        <span class="spec-tag">Patent</span>
+        <span class="spec-tag">Copyright</span>
+      </div>
+    </div>
+
+    <div class="spec-card">
+      <div class="spec-num">09</div>
+      <div class="spec-icon">🌍</div>
+      <div class="spec-name">Labour & Employment Law</div>
+      <p class="spec-desc">Industrial disputes, termination matters, workplace harassment (POSH Act), employment contracts, and labour court representation across India.</p>
+      <div class="spec-tag-list">
+        <span class="spec-tag">POSH Act</span>
+        <span class="spec-tag">Industrial Disputes</span>
+        <span class="spec-tag">Contracts</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ JUDGEMENTS ══ -->
+<section id="judgements">
+  <div class="judgements-intro">
+    <div class="reveal">
+      <div class="section-tag">Notable Matters</div>
+      <h2 class="section-title">Landmark<br><em>Judgements</em></h2>
+      <div class="gold-divider"></div>
+      <p class="section-lead">A selection of significant verdicts and outcomes secured by ABC Associates across courts and tribunals — reflecting our litigation depth and strategic acumen.</p>
+    </div>
+    <div class="reveal" style="padding-top:1rem;">
+      <div style="background:var(--dark3);padding:2rem;border:1px solid rgba(201,168,76,0.15);">
+        <div style="font-family:'Cormorant Garamond',serif;font-size:2.8rem;color:var(--gold);font-weight:300;">98%</div>
+        <div style="font-size:0.72rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--text-muted);margin-top:0.2rem;">Favourable Outcome Rate</div>
+        <div style="width:100%;height:1px;background:rgba(255,255,255,0.06);margin:1.2rem 0;"></div>
+        <div style="font-family:'Cormorant Garamond',serif;font-size:2.8rem;color:var(--gold);font-weight:300;">47</div>
+        <div style="font-size:0.72rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--text-muted);margin-top:0.2rem;">High Court Appearances (2024)</div>
+        <div style="width:100%;height:1px;background:rgba(255,255,255,0.06);margin:1.2rem 0;"></div>
+        <div style="font-family:'Cormorant Garamond',serif;font-size:2.8rem;color:var(--gold);font-weight:300;">12</div>
+        <div style="font-size:0.72rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--text-muted);margin-top:0.2rem;">Supreme Court Appearances</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="judgements-list reveal">
+    <div class="judgement-card">
+      <div class="judgement-meta">
+        <span class="judgement-court">Supreme Court of India</span>
+        <span class="judgement-year">2023</span>
+      </div>
+      <div class="judgement-title">Sharma vs. Union of India — Fundamental Rights & Privacy</div>
+      <p class="judgement-desc">Challenged unconstitutional surveillance provisions under the Telegraph Act. The bench upheld the petitioner's right to privacy under Article 21, setting a binding precedent on state-sponsored digital surveillance.</p>
+      <div class="judgement-outcome">Judgement in Favour of Client</div>
+    </div>
+
+    <div class="judgement-card">
+      <div class="judgement-meta">
+        <span class="judgement-court">Delhi High Court</span>
+        <span class="judgement-year">2022</span>
+      </div>
+      <div class="judgement-title">Mehta Enterprises vs. Rajiv Construction Ltd. — NCLT Insolvency</div>
+      <p class="judgement-desc">Successfully defended a financial creditor against a frivolous IBC petition. The NCLT dismissed the application, affirming the client's secured creditor status and safeguarding ₹85 crore in assets.</p>
+      <div class="judgement-outcome">Application Dismissed · Assets Secured</div>
+    </div>
+
+    <div class="judgement-card">
+      <div class="judgement-meta">
+        <span class="judgement-court">High Court of Delhi</span>
+        <span class="judgement-year">2021</span>
+      </div>
+      <div class="judgement-title">R. Kapoor vs. State — Anticipatory Bail & Criminal Law</div>
+      <p class="judgement-desc">Secured anticipatory bail in a high-profile white-collar fraud case. The court's order quashed the FIR in its entirety after ABC Associates demonstrated procedural violations in the chargesheet.</p>
+      <div class="judgement-outcome">Anticipatory Bail Granted · FIR Quashed</div>
+    </div>
+
+    <div class="judgement-card">
+      <div class="judgement-meta">
+        <span class="judgement-court">Family Court, Delhi</span>
+        <span class="judgement-year">2020</span>
+      </div>
+      <div class="judgement-title">Ananya D. vs. Rahul D. — Matrimonial Property & Custody</div>
+      <p class="judgement-desc">Obtained exclusive child custody for our client alongside a substantial permanent alimony settlement. The judgment set a positive precedent for working mothers' rights in matrimonial proceedings.</p>
+      <div class="judgement-outcome">Full Custody Granted · Alimony Secured</div>
+    </div>
+
+    <div class="judgement-card">
+      <div class="judgement-meta">
+        <span class="judgement-court">Intellectual Property High Court</span>
+        <span class="judgement-year">2019</span>
+      </div>
+      <div class="judgement-title">TechViz Pvt. Ltd. vs. InfoSpark — Trademark Infringement</div>
+      <p class="judgement-desc">Obtained an interim injunction restraining a competitor from using a deceptively similar trademark. The final order directed removal of all infringing products from market and awarded ₹1.2 crore in damages.</p>
+      <div class="judgement-outcome">Injunction Granted · Damages Awarded</div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ TESTIMONIALS ══ -->
+<section id="testimonials">
+  <div style="text-align:center;" class="reveal">
+    <div class="section-tag" style="justify-content:center;">Client Testimonials</div>
+    <h2 class="section-title">What Our Clients <em>Say</em></h2>
+  </div>
+
+  <div class="testimonials-grid reveal">
+    <div class="testimonial-card">
+      <div class="testimonial-quote">"</div>
+      <p class="testimonial-text">ABC Associates handled my corporate restructuring case with exceptional skill. Adv. Choudhary's deep knowledge of NCLT proceedings saved our company from insolvency. Truly a firm that delivers results.</p>
+      <div class="testimonial-author">
+        <div class="author-avatar">🏢</div>
+        <div>
+          <div class="author-name">Ramesh Agarwal</div>
+          <div class="author-role">CEO, Agarwal Industries Ltd.</div>
+          <div class="stars">★★★★★</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="testimonial-card">
+      <div class="testimonial-quote">"</div>
+      <p class="testimonial-text">During the most difficult time of my divorce, ABC Associates was my anchor. They secured my children's custody and ensured I was protected financially. I cannot thank them enough.</p>
+      <div class="testimonial-author">
+        <div class="author-avatar">👩</div>
+        <div>
+          <div class="author-name">Priya Mehta</div>
+          <div class="author-role">Business Owner, Delhi</div>
+          <div class="stars">★★★★★</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="testimonial-card">
+      <div class="testimonial-quote">"</div>
+      <p class="testimonial-text">When falsely implicated in a fraud case, I was terrified. ABC Associates not only got the FIR quashed but also helped clear my professional reputation. Their criminal law expertise is unmatched.</p>
+      <div class="testimonial-author">
+        <div class="author-avatar">👨</div>
+        <div>
+          <div class="author-name">Suresh Kumar Jain</div>
+          <div class="author-role">Chartered Accountant, Mumbai</div>
+          <div class="stars">★★★★★</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ FAQ ══ -->
+<section id="faq">
+  <div style="text-align:center;" class="reveal">
+    <div class="section-tag" style="justify-content:center;">FAQ</div>
+    <h2 class="section-title">Frequently Asked <em>Questions</em></h2>
+  </div>
+
+  <div class="faq-list reveal">
+    <div class="faq-item open">
+      <button class="faq-question" onclick="toggleFaq(this)">
+        What types of cases does ABC Associates handle?
+        <span class="faq-toggle">+</span>
+      </button>
+      <div class="faq-answer">
+        ABC Associates handles a comprehensive range of legal matters including Constitutional Law, Corporate & Commercial Law, Criminal Law, Family & Matrimonial Law, Property Law, Cyber Law, Intellectual Property, Arbitration, and Labour & Employment Law — across Supreme Court, High Courts, District Courts, and Tribunals throughout India.
+      </div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-question" onclick="toggleFaq(this)">
+        Do you offer a free initial consultation?
+        <span class="faq-toggle">+</span>
+      </button>
+      <div class="faq-answer">
+        Yes. ABC Associates offers a complimentary 30-minute initial consultation for all new clients. This session allows us to understand your legal situation, advise on the best course of action, and outline potential strategies — with no obligation to retain our services.
+      </div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-question" onclick="toggleFaq(this)">
+        How is the fee structure determined?
+        <span class="faq-toggle">+</span>
+      </button>
+      <div class="faq-answer">
+        Our fees depend on the nature and complexity of the matter, the courts involved, and the expected duration of the engagement. We offer fixed-fee packages for routine matters, retainer arrangements for corporate clients, and hourly billing for complex litigation. All fee structures are discussed transparently at the outset.
+      </div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-question" onclick="toggleFaq(this)">
+        Will the Senior Advocate personally handle my case?
+        <span class="faq-toggle">+</span>
+      </button>
+      <div class="faq-answer">
+        Adv. A.B. Choudhary personally supervises all matters and appears in significant hearings. For routine filings and procedural matters, our experienced team of junior advocates handles the work under close supervision, ensuring quality and consistency at every stage.
+      </div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-question" onclick="toggleFaq(this)">
+        Do you handle matters outside Delhi?
+        <span class="faq-toggle">+</span>
+      </button>
+      <div class="faq-answer">
+        Yes. While our primary office is in New Delhi and we regularly appear before the Supreme Court and Delhi High Court, we handle matters across India through our network of associate counsel in Mumbai, Chennai, Kolkata, Hyderabad, and Bengaluru.
+      </div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-question" onclick="toggleFaq(this)">
+        How quickly can I expect a response after reaching out?
+        <span class="faq-toggle">+</span>
+      </button>
+      <div class="faq-answer">
+        We respond to all enquiries within 24 business hours. For urgent matters — such as bail, injunction applications, or time-sensitive corporate matters — we have provisions for same-day response and emergency consultations.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ CONTACT ══ -->
+<section id="contact">
+  <div style="text-align:center;" class="reveal">
+    <div class="section-tag" style="justify-content:center;">Get In Touch</div>
+    <h2 class="section-title">Consult With <em>Us Today</em></h2>
+    <p class="section-lead" style="margin:0 auto;">Ready to discuss your legal matter? Reach out and a member of our team will respond within 24 hours.</p>
+  </div>
+
+  <div class="contact-grid">
+    <div class="reveal">
+      <div class="contact-item">
+        <div class="contact-icon">📍</div>
+        <div>
+          <div class="contact-label">Office Address</div>
+          <div class="contact-value">Chamber No. 412, Supreme Court of India Annexe<br>Bhagwan Das Road, New Delhi — 110001</div>
+        </div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-icon">📞</div>
+        <div>
+          <div class="contact-label">Phone / WhatsApp</div>
+          <div class="contact-value">+91 98100 00000<br>+91 11 2338 0000</div>
+        </div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-icon">✉️</div>
+        <div>
+          <div class="contact-label">Email</div>
+          <div class="contact-value">info@abcassociates.in<br>counsel@abcassociates.in</div>
+        </div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-icon">🕐</div>
+        <div>
+          <div class="contact-label">Office Hours</div>
+          <div class="contact-value">Mon – Sat: 9:00 AM – 7:00 PM<br>Sunday: By Appointment Only</div>
+        </div>
+      </div>
+
+      <div style="margin-top:1.5rem;">
+        <div style="font-size:0.62rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--text-muted);margin-bottom:0.8rem;">Follow Us</div>
+        <div class="social-links">
+          <a href="#" class="social-link" title="LinkedIn">in</a>
+          <a href="#" class="social-link" title="Twitter / X">𝕏</a>
+          <a href="#" class="social-link" title="Facebook">f</a>
+          <a href="#" class="social-link" title="Instagram">📸</a>
+          <a href="#" class="social-link" title="YouTube">▶</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="contact-form reveal">
+      <div class="form-row">
+        <div class="form-group">
+          <label>Your Name</label>
+          <input type="text" placeholder="Full Name"/>
+        </div>
+        <div class="form-group">
+          <label>Phone / WhatsApp</label>
+          <input type="tel" placeholder="+91 98000 00000"/>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Email Address</label>
+        <input type="email" placeholder="your@email.com"/>
+      </div>
+      <div class="form-group">
+        <label>Area of Legal Assistance</label>
+        <select>
+          <option value="">— Select Practice Area —</option>
+          <option>Constitutional Law</option>
+          <option>Corporate & Commercial Law</option>
+          <option>Criminal Law</option>
+          <option>Family & Matrimonial Law</option>
+          <option>Property & Real Estate Law</option>
+          <option>Cyber Law & IT</option>
+          <option>Arbitration & Mediation</option>
+          <option>Intellectual Property Law</option>
+          <option>Labour & Employment Law</option>
+          <option>Other</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Brief Description of Your Matter</label>
+        <textarea placeholder="Briefly describe your legal issue so we can connect you with the right counsel..."></textarea>
+      </div>
+      <button class="form-submit">Send Enquiry →</button>
+    </div>
+  </div>
+</section>
+
+<!-- ══ FOOTER ══ -->
+<footer>
+  <div>
+    <div class="footer-logo">ABC <span>Associates</span></div>
+    <div class="footer-tagline">Premier Legal Counsel · Since 2005</div>
+  </div>
+
+  <ul class="footer-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#specializations">Practice Areas</a></li>
+    <li><a href="#judgements">Judgements</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+
+  <div class="footer-copy">
+    © 2025 ABC Associates. All rights reserved.<br>
+    Bar Council Reg. No. D/1234/2005
+  </div>
+</footer>
+
+<script>
+  // FAQ Toggle
+  function toggleFaq(btn) {
+    const item = btn.parentElement;
+    const allItems = document.querySelectorAll('.faq-item');
+    allItems.forEach(i => { if (i !== item) i.classList.remove('open'); });
+    item.classList.toggle('open');
+  }
+
+  // Scroll Reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 100);
+      }
+    });
+  }, { threshold: 0.12 });
+  reveals.forEach(el => observer.observe(el));
+
+  // Nav shrink on scroll
+  window.addEventListener('scroll', () => {
+    const nav = document.querySelector('nav');
+    if (window.scrollY > 60) {
+      nav.style.padding = '0.9rem 5%';
+      nav.style.borderColor = 'rgba(201,168,76,0.25)';
+    } else {
+      nav.style.padding = '1.4rem 5%';
+      nav.style.borderColor = 'rgba(201,168,76,0.15)';
+    }
+  });
+
+  // Form submit feedback
+  document.querySelector('.form-submit').addEventListener('click', function(e) {
+    this.textContent = 'Enquiry Sent ✓';
+    this.style.background = '#6dbf7f';
+    setTimeout(() => {
+      this.textContent = 'Send Enquiry →';
+      this.style.background = '';
+    }, 3000);
+  });
+</script>
+</body>
+</html>
